@@ -1,4 +1,5 @@
-const express = require('express');
+// const express = require('express');
+import express from 'express'
 const port = process.env.PORT || 5173;
 const app = express();
 
