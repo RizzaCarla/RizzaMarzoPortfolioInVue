@@ -5,20 +5,18 @@
   >
     <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-    <v-toolbar-title>Application</v-toolbar-title>
+    <v-toolbar-title>Rizza Marzo's Portfolio</v-toolbar-title>
 
-    <v-spacer></v-spacer>
-
-    <v-btn icon>
-      <v-icon>mdi-dots-vertical</v-icon>
-    </v-btn>
+    <v-btn><RouterLink to="/">Home</RouterLink></v-btn>
+    <v-btn><RouterLink to="/about">My R&R</RouterLink></v-btn>
+    <v-btn><RouterLink to="/artworks">Artwork</RouterLink></v-btn>
+    <v-btn><RouterLink to="/travels">Travels</RouterLink></v-btn>
+    <v-btn><RouterLink to="/recipes">Recipes</RouterLink></v-btn>
   </v-app-bar>
 </template>
 
-<script>
-export default {
-
-}
+<script setup>
+  import { RouterLink } from 'vue-router';
 </script>
 
 <style>

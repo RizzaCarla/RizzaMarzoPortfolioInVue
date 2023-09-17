@@ -5,6 +5,12 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  build: {
+    manifest: true,
+    rollupOptions: {
+      input: './src/main.js',
+    },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src")
