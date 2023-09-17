@@ -16,3 +16,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 ## Run Prod
 - npm run build
 - npm run start
+
+## Push to Heroku
+- heroku login
+- git push heroku main
