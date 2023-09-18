@@ -1,12 +1,13 @@
+//homeRouter.js
 import express from "express";
-import fs from "fs/promises";
 import path from "path";
+import { fileURLToPath } from "url";
+import fs from "fs/promises";
 
 const router = express.Router();
+const __filename = fileURLToPath(import.meta.url);
 
-// router.get("/*", (_req, res) => {
-//   res.render("index.html.ejs");
-// });
+const __dirname = path.dirname(__filename);
 
 const environment = process.env.NODE_ENV;
 
@@ -16,13 +17,21 @@ router.get("/*", async (_req, res) => {
     manifest: await parseManifest(),
   };
 
-  res.render("index.html.ejs", data);
+  res.render(
+    path.join(__dirname, "../../client/views", "index.html.ejs"),
+    data
+  );
 });
 
 const parseManifest = async () => {
   if (environment !== "production") return {};
 
-  const manifestPath = path.join(path.resolve(), "dist", "manifest.json");
+  const manifestPath = path.join(
+    __dirname,
+    "../../client",
+    "dist",
+    "manifest.json"
+  );
   const manifestFile = await fs.readFile(manifestPath);
 
   return JSON.parse(manifestFile);

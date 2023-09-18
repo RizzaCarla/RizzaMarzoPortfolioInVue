@@ -6,15 +6,16 @@ import path from 'path'
 export default defineConfig({
   plugins: [vue()],
   build: {
+    // generate manifest.json in outDir
     manifest: true,
     rollupOptions: {
-      input: './src/main.js',
+      // overwrite default .html entry
+      input: "./src/main.js",
     },
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src")
-    }
-  }
-
-})
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+});
