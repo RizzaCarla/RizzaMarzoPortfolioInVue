@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 // Connect to database
 mongoose
   .connect(process.env.MONGO_URI, {
+    dbName: `PortfolioDatabase`,
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
