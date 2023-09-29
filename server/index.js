@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === "production") {
   app.use("/", express.static(publicPath));
   app.use("/src", assetsRouter);
 }
-app.use("/api/todoList", ArtworkListRoutes);
+app.use("/api/artworkList", ArtworkListRoutes);
 app.use(homeRouter);
 
 app.listen(process.env.PORT, () =>

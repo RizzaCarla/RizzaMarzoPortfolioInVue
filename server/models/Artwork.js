@@ -11,6 +11,6 @@ const ArtistSchema = new Schema({
   },
 });
 
-const Todo = model("todo", ArtistSchema);
+const Artwork = model(" artwork", ArtistSchema);
 
-export default Todo;
+export default Artwork;
