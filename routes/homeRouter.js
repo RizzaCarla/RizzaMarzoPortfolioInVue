@@ -18,7 +18,7 @@ router.get("/*", async (_req, res) => {
   };
 
   res.render(
-    path.join(__dirname, "../../client/views", "index.html.ejs"),
+    path.join(__dirname, "../client/views", "index.html.ejs"),
     data
   );
 });
@@ -28,7 +28,7 @@ const parseManifest = async () => {
 
   const manifestPath = path.join(
     __dirname,
-    "../../client",
+    "../client",
     "dist",
     "manifest.json"
   );
