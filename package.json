@@ -9,7 +9,8 @@
     "dev:client": "npm run dev --prefix ./client/",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "start": "set NODE_ENV=production&& node index.js --ignore ./client/",
-    "build": "npm run build --prefix ./client/"
+    "build": "npm run build --prefix ./client/",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "engines": {
     "node": "18.x",
