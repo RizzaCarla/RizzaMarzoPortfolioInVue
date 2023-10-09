@@ -11,6 +11,10 @@
     "start": "set NODE_ENV=production&& node index.js --ignore ./client/",
     "build": "npm run build --prefix ./client/"
   },
+  "engines": {
+    "node": "18.x",
+    "npm": "7.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
