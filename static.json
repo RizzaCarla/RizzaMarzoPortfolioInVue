@@ -1,3 +1,7 @@
 {
-  "root": "./clientheroku buildpacks:set https://github.com/heroku/heroku-buildpack-static.git/dist"
+  "root": "./client/dist",
+  "clean_urls": true,
+  "routes": {
+    "/**": "index.html.ejs"
+  }
 }
