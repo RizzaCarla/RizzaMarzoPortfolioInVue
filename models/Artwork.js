@@ -9,8 +9,12 @@ const ArtistSchema = new Schema({
     type: String,
     required: true,
   },
+  imageUrl: {
+    type: String,
+    required: true,
+  }
 });
 
-const Artwork = model(" artwork", ArtistSchema);
+const Artwork = model("artwork", ArtistSchema);
 
 export default Artwork;

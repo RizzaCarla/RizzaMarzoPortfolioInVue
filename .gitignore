@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+google-cloud-key.json
 
 # Editor directories and files
 .vscode/*
