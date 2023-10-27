@@ -1,5 +1,5 @@
-<script setup>
-
+<script>
+  name: "RecipePage"
 </script>
 <template>
   <v-main class="bg-grey-lighten-2">

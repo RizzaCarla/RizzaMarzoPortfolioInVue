@@ -1,25 +1,13 @@
 <template>
   <v-main>
-    <v-container>
+    <v-container fluid>
 
-      <h1 class="title">Artwork List</h1>
-  
-      <form @submit.prevent="addArtwork" method="post">
-        <input class="input" v-model="title" type="text" name="name" placeholder="Enter artwork" />
-        <input class="input" v-model="description" type="text" name="description" placeholder="Enter Description" />
-        <button type="submit" class="submit-btn">Add Artwork</button>
-      </form>
       <div class="artwork-wrapper">
-        <h2 class="caption">Artwork List</h2>
-        <div v-if="artworks.length < 1">Artwork list is empty</div>
-        <ul v-else>
-          <li class="artwork-item" v-for="(artwork, i) in artworks" :key="artwork._id">
-            <div class="artwork">
-              <h3 class="artwork-title">{{ artwork.title }}</h3>
-              <span class="artwork-description">{{ artwork.description }}</span>
-            </div>
-  
-            <div class="update-form" id="updateForm">
+        <v-col v-if="artworkStore.artworkList.length < 1">No Artworks available at this time</v-col>
+        <v-row v-else v-for="(artwork) in artworkStore.artworkList" :key="artwork._id" class="d-flex flex-row">
+          <v-col class="artwork-image">
+            <v-img cover :src="artwork.imageUrl"></v-img>
+            <!-- <div class="update-form" id="updateForm">
               <input type="text" name="updateTitle" id="updateArtwork" v-model="updateTitle" />
               <br />
               <input type="text" name="updateDescription" id="updateArtwork" v-model="updateDescription" />
@@ -31,44 +19,71 @@
               <button type="button" class="del-btn" @click="deleteArtwork(artwork._id, i)">
                 Delete
               </button>
-            </div>
-          </li>
-        </ul>
+            </div> -->
+          </v-col>
+          <v-col class="artwork-info">
+            <h3 class="artwork-title">{{ artwork.title }}</h3>
+            <span class="artwork-description">{{ artwork.description }}</span>
+          </v-col>
+        </v-row>
       </div>
+
+      <!--   
+      <form @submit.prevent="addArtwork" method="post">
+        <input class="input" v-model="title" type="text" name="name" placeholder="Enter artwork" />
+        <input class="input" v-model="description" type="text" name="description" placeholder="Enter Description" />
+        <input class="input" v-model="imageUrl" type="text" name="imageUrl" placeholder="Image Url" />
+        <button type="submit" class="submit-btn">Add Artwork</button>
+      </form> -->
     </v-container>
   </v-main>
 </template>
 
 <script>
 import axios from "axios";
+import { useArtworkStore } from "@/stores/artwork.store"
 
 export default {
-  name: "App",
+  name: "ArtworkPage",
   data() {
     return {
       title: "",
       description: "",
+      imageUrl: "",
       artworks: [],
       updateTitle: "",
       updateDescription: "",
+      updateImageUrl: "",
     };
   },
-  mounted() {
-    this.getArtworks();
+  setup() {
+    const artworkStore = useArtworkStore();
+    return {
+      artworkStore
+    }
+  },
+  created() {
+    try {
+      this.refreshArtworksList()
+      console.log(this.artworkStore.artworkList)
+    } catch {
+      console.log("There was an error loading the artworks")
+    }
   },
   methods: {
-    async getArtworks() {
-      const res = await axios.get("/api/artworkList");
-      this.artworks = res.data;
+    async refreshArtworksList() {
+      await this.artworkStore.getArtworks();
     },
 
     async addArtwork() {
       const res = await axios.post("api/artworkList/", {
         title: this.title,
         description: this.description,
+        imageUrl: this.imageUrl,
       });
       this.title = "";
       this.description = "";
+      this.imageUrl = "";
     },
 
     async deleteArtwork(id) {
@@ -84,47 +99,39 @@ export default {
             el.classList.add("active");
             this.updateTitle = artwork.title;
             this.updateDescription = artwork.description;
+            this.updateImageUrl = artwork.imageUrl
             event.target.innerHTML = "Save";
           } else {
             const res = await axios.put(`api/artworkList/${id}`, {
               title: this.updateTitle,
               description: this.updateDescription,
+              imageUrl: updateImageUrl,
             });
             event.target.innerHTML = "Edit";
             el.classList.remove("active");
             this.updateTitle = "";
             this.updateDescription = "";
+            updateImageUrl = "";
           }
         }
       });
     },
   },
-  watch: {
-    artworks() {
-      this.getArtworks(); // Watch artworks list for any change
-    },
-  },
 };
 </script>
-<!-- <script setup>
-</script>
-<template>
-  <v-main>
-    <v-container>
-      <v-row>
-        <v-col
-          v-for="n in 24"
-          :key="n"
-          cols="4"
-        >
-          <v-card height="200"></v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-main>
-</template>
+<style lang="scss" scoped>
+.v-main {
+  padding-top: 0;
+}
+.v-container {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
 
-
-<style>
-
-</style> -->
+.artwork-image {
+  flex: 0 0 74vh;
+  border:  5px solid white;
+}
+</style>

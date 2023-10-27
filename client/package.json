@@ -9,12 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
     "axios": "^1.5.1",
     "ejs": "^3.1.9",
+    "pinia": "^2.1.7",
+    "sass": "^1.69.4",
+    "vite": "^4.4.11",
     "vue": "^3.2.47",
     "vue-router": "^4.2.2",
-    "vuetify": "^3.3.2",
-    "@vitejs/plugin-vue": "^4.2.3",
-    "vite": "^4.4.11"
+    "vuetify": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint-plugin-vuetify": "^2.0.5"
   }
 }

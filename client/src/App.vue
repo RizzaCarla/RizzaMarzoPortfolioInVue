@@ -4,11 +4,16 @@ import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <v-app>
+  <v-layout>
     <NavBar/>
-    <RouterView></RouterView>
-  </v-app>
+      <RouterView></RouterView>
+    </v-layout>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+.v-main {
+  background: #f5f5f5;
+  position: relative;
+  width: 100%;
+}
 </style>
