@@ -13,6 +13,7 @@ dist-ssr
 *.local
 .env
 google-cloud-key.json
+eastern-memory-402019-75716ee89122.json
 
 # Editor directories and files
 .vscode/*
