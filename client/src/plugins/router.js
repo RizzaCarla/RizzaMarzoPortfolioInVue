@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "@/views/HomePage.vue";
-import RecipePage from "@/views/RecipePage.vue";
+import TravelPage from "@/views/TravelPage.vue";
 import ArtworkPage from "@/views/ArtworkPage.vue";
 
 const routes = [
@@ -9,11 +9,11 @@ const routes = [
     name: "HomePage",
     component: HomePage,
   },
-  {
-    path: "/r&r",
-    name: "RecipePage",
-    component: RecipePage,
-  },
+  // {
+  //   path: "/r&r",
+  //   name: "RecipePage",
+  //   component: RecipePage,
+  // },
   {
     path: "/artworks",
     name: "ArtworkPage",
@@ -21,13 +21,8 @@ const routes = [
   },
   {
     path: "/travels",
-    name: "RecipePage",
-    component: RecipePage,
-  },
-  {
-    path: "/recipes",
-    name: "RecipePage",
-    component: RecipePage,
+    name: "TravelPage",
+    component: TravelPage,
   },
 ];
 
